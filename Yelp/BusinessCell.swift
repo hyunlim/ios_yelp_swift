@@ -24,7 +24,9 @@ class BusinessCell: UITableViewCell {
                 self.nameLabel.text = business.name
                 self.thumbImageView.setImageWithURL(business.imageURL!)
                 self.ratingImageView.setImageWithURL(business.ratingImageURL!)
-                self.reviewsCountLabel.text = "\(business.reviewCount) Reviews"
+                if let reviewCount = business.reviewCount {
+                    self.reviewsCountLabel.text = "\(reviewCount) Reviews"
+                }
                 self.addressLabel.text = business.address
                 self.categoriesLabel.text = business.categories
                 self.distanceLabel.text = business.distance
