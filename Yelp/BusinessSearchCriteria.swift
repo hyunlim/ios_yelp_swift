@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import CoreLocation
 
 public class BusinessSearchCriteria {
     
@@ -15,9 +16,19 @@ public class BusinessSearchCriteria {
     public var categories: Set<String>? = []
     public var deals: Bool?
     public var radius:Int?
+    public var bounds:[String:Double]? = [:]
     
     init() {
         self.term = ""
+    }
+    
+    public func setBounds(ne: CLLocationCoordinate2D, sw: CLLocationCoordinate2D) -> Void {
+        if var bounds = self.bounds {
+            bounds["ne_latitude"] = Double(_bits: ne.latitude.value)
+            bounds["ne_longitude"] = Double(_bits: ne.longitude.value)
+            bounds["sw_latitude"] = Double(_bits: sw.latitude.value)
+            bounds["sw_longitude"] = Double(_bits: sw.longitude.value)
+        }
     }
     
     public static func yelpCategories() -> [[String:String]] {

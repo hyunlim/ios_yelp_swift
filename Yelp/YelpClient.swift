@@ -52,14 +52,14 @@ class YelpClient: BDBOAuth1RequestOperationManager {
     }
     
     func searchWithTerm(term: String, completion: ([Business]!, NSError!) -> Void) -> AFHTTPRequestOperation {
-        return searchWithTerm(term, sort: nil, categories: nil, deals: nil, radius: nil, completion: completion)
+        return searchWithTerm(term, sort: nil, categories: nil, deals: nil, radius: nil, bounds: nil, completion: completion)
     }
     
-    func searchWithTerm(term: String, sort: YelpSortMode?, categories: [String]?, deals: Bool?, radius: Int?, completion: ([Business]!, NSError!) -> Void) -> AFHTTPRequestOperation {
+    func searchWithTerm(term: String, sort: YelpSortMode?, categories: [String]?, deals: Bool?, radius: Int?, bounds: [String:Double]?, completion: ([Business]!, NSError!) -> Void) -> AFHTTPRequestOperation {
         // For additional parameters, see http://www.yelp.com/developers/documentation/v2/search_api
 
         // Default the location to San Francisco
-        var parameters: [String : AnyObject] = ["term": term, "ll": "37.785771,-122.406165"]
+        var parameters: [String : AnyObject] = ["term": term]
 
         if sort != nil {
             parameters["sort"] = sort!.rawValue
@@ -75,6 +75,21 @@ class YelpClient: BDBOAuth1RequestOperationManager {
         
         if let radius = radius {
             parameters["radius_filter"] = radius
+        }
+        
+        if let bounds = bounds,
+            let ne_lat = bounds["ne_latitude"],
+            let ne_lng = bounds["ne_longitude"],
+            let sw_lat = bounds["sw_latitude"],
+            let sw_lng = bounds["sw_longitude"]
+            {
+            let ne_lat_str = String(format: "%.6f", ne_lat)
+            let ne_lng_str = String(format: "%.6f", ne_lng)
+            let sw_lat_str = String(format: "%.6f", sw_lat)
+            let sw_lng_str = String(format: "%.6f", sw_lng)
+            parameters["bounds"] = "\(sw_lat_str),\(sw_lng_str)\(ne_lat_str),\(ne_lng_str)"
+        } else {
+            parameters["ll"] = "37.785771,-122.406165"
         }
         
         print(parameters)

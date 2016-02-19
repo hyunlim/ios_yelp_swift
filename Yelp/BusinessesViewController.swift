@@ -65,12 +65,14 @@ class BusinessesViewController: UIViewController {
             let deals = searchCriteria.deals ?? false
             let sort = searchCriteria.sort
             let radius = searchCriteria.radius
+            let bounds = searchCriteria.bounds
             Business.searchWithTerm(
                 searchCriteria.term,
                 sort: sort,
                 categories: categories,
                 deals: deals,
                 radius: radius,
+                bounds: bounds,
                 completion: {(businesses: [Business]!, error: NSError!) -> Void in
                     self.businesses = businesses
                     self.tableView.reloadData()
