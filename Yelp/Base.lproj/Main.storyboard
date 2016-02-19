@@ -214,6 +214,48 @@
                                             <outlet property="sortControl" destination="fpI-we-FkC" id="bmJ-hl-pYe"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="com.lyft.SliderCell" rowHeight="131" id="BAj-YC-wWk" customClass="SliderCell" customModule="Yelp" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="189" width="320" height="131"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="BAj-YC-wWk" id="qbZ-8t-T3e">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="130.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="0.0" maxValue="40000" translatesAutoresizingMaskIntoConstraints="NO" id="SpM-DK-XuM">
+                                                    <rect key="frame" x="6" y="36.5" width="308" height="87"/>
+                                                    <connections>
+                                                        <action selector="onSliderValueChanged:" destination="BAj-YC-wWk" eventType="touchDragInside" id="mWj-lq-9so"/>
+                                                    </connections>
+                                                </slider>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Distance" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fu6-gW-uuo">
+                                                    <rect key="frame" x="8" y="8" width="67" height="20.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dzC-6p-wXw">
+                                                    <rect key="frame" x="264" y="8" width="42" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="SpM-DK-XuM" secondAttribute="trailing" constant="8" id="C7P-75-hgt"/>
+                                                <constraint firstItem="Fu6-gW-uuo" firstAttribute="leading" secondItem="qbZ-8t-T3e" secondAttribute="leading" constant="8" id="Nmo-An-Vlb"/>
+                                                <constraint firstAttribute="bottom" secondItem="SpM-DK-XuM" secondAttribute="bottom" constant="8" id="Ue1-6u-XQw"/>
+                                                <constraint firstAttribute="trailing" secondItem="dzC-6p-wXw" secondAttribute="trailing" constant="8" id="ZCv-8q-PEl"/>
+                                                <constraint firstItem="SpM-DK-XuM" firstAttribute="top" secondItem="Fu6-gW-uuo" secondAttribute="bottom" constant="8" id="ZTl-oI-iwp"/>
+                                                <constraint firstItem="dzC-6p-wXw" firstAttribute="top" secondItem="qbZ-8t-T3e" secondAttribute="top" constant="8" id="ZjX-tS-gjS"/>
+                                                <constraint firstItem="SpM-DK-XuM" firstAttribute="leading" secondItem="qbZ-8t-T3e" secondAttribute="leading" constant="8" id="iYi-XF-AkX"/>
+                                                <constraint firstItem="Fu6-gW-uuo" firstAttribute="top" secondItem="qbZ-8t-T3e" secondAttribute="top" constant="8" id="pQj-oD-TXi"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="distanceLabel" destination="dzC-6p-wXw" id="TW6-rX-Vgr"/>
+                                            <outlet property="slider" destination="SpM-DK-XuM" id="ZGQ-fI-ZAr"/>
+                                        </connections>
+                                    </tableViewCell>
                                 </prototypes>
                             </tableView>
                         </subviews>

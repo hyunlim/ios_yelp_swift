@@ -53,15 +53,17 @@ class BusinessesViewController: UIViewController {
             let categories = Array(searchCriteria.categories!)
             let deals = searchCriteria.deals ?? false
             let sort = searchCriteria.sort
+            let radius = searchCriteria.radius
             Business.searchWithTerm(
                 searchCriteria.term,
                 sort: sort,
                 categories: categories,
                 deals: deals,
+                radius: radius,
                 completion: {(businesses: [Business]!, error: NSError!) -> Void in
                     self.businesses = businesses
                     self.tableView.reloadData()
-                })
+            })
         }
     }
 
@@ -90,18 +92,7 @@ extension BusinessesViewController: UITableViewDataSource {
 
 extension BusinessesViewController: FiltersViewControllerDelegate {
     func filtersViewController(filtersViewController: FiltersViewController, didUpdateFilters searchCriteria: BusinessSearchCriteria) {
-        let categories = Array(searchCriteria.categories!)
-        let deals = searchCriteria.deals ?? false
-        let sort = searchCriteria.sort
-        Business.searchWithTerm(
-            searchCriteria.term,
-            sort: sort,
-            categories: categories,
-            deals: deals,
-            completion: {(businesses: [Business]!, error: NSError!) -> Void in
-                self.businesses = businesses
-                self.tableView.reloadData()
-            })
+        self.search()
     }
     
     func loadCriteria(filtersViewController: FiltersViewController) -> BusinessSearchCriteria? {

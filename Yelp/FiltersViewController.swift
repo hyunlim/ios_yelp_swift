@@ -20,6 +20,7 @@ class FiltersViewController: UIViewController {
     private let sectionHeadings = [
         "Deals",
         "Sort By",
+        "Distance",
         "Categories"
     ]
     
@@ -85,6 +86,9 @@ extension FiltersViewController: UITableViewDataSource {
             count = 1
             break
         case 2:
+            count = 1
+            break
+        case 3:
             count = self.categories.count
             break
         default:
@@ -116,6 +120,13 @@ extension FiltersViewController: UITableViewDataSource {
             cell = sortCell
             break
         case 2:
+            let sliderCell = tableView.dequeueReusableCellWithIdentifier("com.lyft.SliderCell", forIndexPath: indexPath) as! SliderCell
+            
+            sliderCell.delegate = self
+            sliderCell.setValue(Float(self.searchCriteria?.radius ?? 20000))
+            cell = sliderCell
+            break
+        case 3:
             let switchCell = tableView.dequeueReusableCellWithIdentifier("com.lyft.SwitchCell", forIndexPath: indexPath) as! SwitchCell
             let category = self.categories[indexPath.row]
             
@@ -152,7 +163,7 @@ extension FiltersViewController: SwitchCellDelegate {
                 switch(indexPath.section) {
                 case 0:
                     searchCriteria.deals = value
-                case 2:
+                case 3:
                     if let categoryCode = self.categories[indexPath.row]["code"] {
                         if value {
                             searchCriteria.categories?.insert(categoryCode)
@@ -172,6 +183,14 @@ extension FiltersViewController: SortCellDelegate {
     
     func sortCell(sortCell: SortCell, didChangeValue value: Int) {
         self.searchCriteria?.sort = YelpSortMode(rawValue: value)
+    }
+    
+}
+
+extension FiltersViewController: SliderCellDelegate {
+    
+    func sliderCell(sliderCell: SliderCell, didValueChanged value: Int) {
+        self.searchCriteria?.radius = value
     }
     
 }

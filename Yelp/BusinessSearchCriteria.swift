@@ -14,6 +14,7 @@ public class BusinessSearchCriteria {
     internal var sort: YelpSortMode?
     public var categories: Set<String>? = []
     public var deals: Bool?
+    public var radius:Int?
     
     init() {
         self.term = ""
