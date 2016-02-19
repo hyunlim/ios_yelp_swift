@@ -11,11 +11,15 @@ import UIKit
 class BusinessesViewController: UIViewController {
 
     var businesses: [Business]!
+    weak var searchCriteria: BusinessSearchCriteria?
     
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.searchCriteria = BusinessSearchCriteria()
+        self.searchCriteria?.term = "Restaurants"
         
         self.tableView.delegate = self
         self.tableView.dataSource = self
@@ -90,16 +94,19 @@ extension BusinessesViewController: UITableViewDataSource {
 }
 
 extension BusinessesViewController: FiltersViewControllerDelegate {
-    func filtersViewController(filtersViewController: FiltersViewController, didUpdateFilters filters: [String : AnyObject]) {
-        let categories = filters["categories"] as? [String]
+    func filtersViewController(filtersViewController: FiltersViewController, didUpdateFilters searchCriteria: BusinessSearchCriteria) {
         Business.searchWithTerm(
-            "Restaurants",
+            searchCriteria.term,
             sort: nil,
-            categories: categories,
+            categories: searchCriteria.categories,
             deals: nil,
             completion: {(businesses: [Business]!, error: NSError!) -> Void in
                 self.businesses = businesses
                 self.tableView.reloadData()
             })
+    }
+    
+    func loadCriteria(filtersViewController: FiltersViewController) -> BusinessSearchCriteria? {
+        return self.searchCriteria
     }
 }
