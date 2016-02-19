@@ -96,11 +96,12 @@ extension BusinessesViewController: UITableViewDataSource {
 extension BusinessesViewController: FiltersViewControllerDelegate {
     func filtersViewController(filtersViewController: FiltersViewController, didUpdateFilters searchCriteria: BusinessSearchCriteria) {
         let categories = Array(searchCriteria.categories!)
+        let deals = searchCriteria.deals ?? false
         Business.searchWithTerm(
             searchCriteria.term,
             sort: nil,
             categories: categories,
-            deals: nil,
+            deals: deals,
             completion: {(businesses: [Business]!, error: NSError!) -> Void in
                 self.businesses = businesses
                 self.tableView.reloadData()

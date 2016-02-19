@@ -18,6 +18,7 @@ class FiltersViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     private let sectionHeadings = [
+        "Deals",
         "Categories"
     ]
     
@@ -44,11 +45,6 @@ class FiltersViewController: UIViewController {
 
         // Do any additional setup after loading the view.
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
     
     @IBAction func onCancel(sender: AnyObject) {
         self.dismissViewControllerAnimated(true, completion: nil)
@@ -62,15 +58,6 @@ class FiltersViewController: UIViewController {
         delegate?.filtersViewController(self, didUpdateFilters: searchCriteria)
     }
     
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
     private func constructCriteriaFromUI() -> BusinessSearchCriteria {
         let searchCriteria = self.searchCriteria ?? BusinessSearchCriteria()
     
@@ -86,17 +73,34 @@ class FiltersViewController: UIViewController {
 extension FiltersViewController: UITableViewDataSource {
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section == 0 {
-            return self.categories.count
-        } else {
-            return 0
+        var count = 0
+        switch(section) {
+        case 0:
+            count = 1
+        case 1:
+            count = self.categories.count
+            break
+        default:
+            count = 0
+            break
         }
+        return count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cell:UITableViewCell
         
-        if indexPath.section == 0 {
+        switch indexPath.section {
+        case 0:
+            let switchCell = tableView.dequeueReusableCellWithIdentifier("com.lyft.SwitchCell", forIndexPath: indexPath) as! SwitchCell
+            
+            switchCell.switchLabel.text = "Deals Only"
+            switchCell.delegate = self
+            switchCell.toggleSwitch.on = self.searchCriteria?.deals ?? false
+            
+            cell = switchCell
+            break
+        case 1:
             let switchCell = tableView.dequeueReusableCellWithIdentifier("com.lyft.SwitchCell", forIndexPath: indexPath) as! SwitchCell
             let category = self.categories[indexPath.row]
             
@@ -105,8 +109,10 @@ extension FiltersViewController: UITableViewDataSource {
             switchCell.toggleSwitch.on = self.searchCriteria?.categories?.contains(category["code"]!) ?? false
             
             cell = switchCell
-        } else {
+            break
+        default:
             cell = UITableViewCell()
+            break
         }
         
         return cell
@@ -119,7 +125,7 @@ extension FiltersViewController: UITableViewDataSource {
 
 extension FiltersViewController: UITableViewDelegate {
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 1
+        return self.sectionHeadings.count
     }
 }
 
@@ -128,12 +134,21 @@ extension FiltersViewController: SwitchCellDelegate {
         if let indexPath = self.tableView.indexPathForCell(switchCell),
             searchCriteria = self.searchCriteria {
             
-                if value {
-                    searchCriteria.categories?.insert(self.categories[indexPath.row]["code"]!)
-                } else {
-                    searchCriteria.categories?.remove(self.categories[indexPath.row]["code"]!)
+                switch(indexPath.section) {
+                case 0:
+                    searchCriteria.deals = value
+                case 1:
+                    if let categoryCode = self.categories[indexPath.row]["code"] {
+                        if value {
+                            searchCriteria.categories?.insert(categoryCode)
+                        } else {
+                            searchCriteria.categories?.remove(categoryCode)
+                        }
+                    }
+                    break
+                default:
+                    break
                 }
-            
         }
     }
 }
