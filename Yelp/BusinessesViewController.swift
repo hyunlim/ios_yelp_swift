@@ -18,56 +18,51 @@ class BusinessesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Initialize the UISearchBar
+        let searchBar = UISearchBar()
+        searchBar.delegate = self
+        searchBar.sizeToFit()
+        searchBar.placeholder = "Restaurants"
+        self.navigationItem.titleView = searchBar
+        
         self.searchCriteria = BusinessSearchCriteria()
-        self.searchCriteria?.term = "Restaurants"
+        self.searchCriteria?.term = ""
         
         self.tableView.delegate = self
         self.tableView.dataSource = self
         self.tableView.rowHeight = UITableViewAutomaticDimension
         self.tableView.estimatedRowHeight = 120
 
-        Business.searchWithTerm(self.searchCriteria!.term, completion: { (businesses: [Business]!, error: NSError!) -> Void in
-            self.businesses = businesses
-        
-            for business in businesses {
-                print(business.name!)
-                print(business.address!)
-            }
-            
-            self.tableView.reloadData()
-        })
+        self.search()
 
-/* Example of Yelp search with more search options specified
-        Business.searchWithTerm("Restaurants", sort: .Distance, categories: ["asianfusion", "burgers"], deals: true) { (businesses: [Business]!, error: NSError!) -> Void in
-            self.businesses = businesses
-            
-            for business in businesses {
-                print(business.name!)
-                print(business.address!)
-            }
-        }
-*/
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         let navigationController = segue.destinationViewController as! UINavigationController
         let filtersViewController = navigationController.topViewController as! FiltersViewController
         filtersViewController.delegate = self
+    }
+    
+    private func search() {
+        if let searchCriteria = self.searchCriteria {
+            let categories = Array(searchCriteria.categories!)
+            let deals = searchCriteria.deals ?? false
+            let sort = searchCriteria.sort
+            Business.searchWithTerm(
+                searchCriteria.term,
+                sort: sort,
+                categories: categories,
+                deals: deals,
+                completion: {(businesses: [Business]!, error: NSError!) -> Void in
+                    self.businesses = businesses
+                    self.tableView.reloadData()
+                })
+        }
     }
 
 }
@@ -112,4 +107,14 @@ extension BusinessesViewController: FiltersViewControllerDelegate {
     func loadCriteria(filtersViewController: FiltersViewController) -> BusinessSearchCriteria? {
         return self.searchCriteria
     }
+}
+
+extension BusinessesViewController: UISearchBarDelegate {
+    
+    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+        self.searchCriteria = BusinessSearchCriteria()
+        self.searchCriteria?.term = searchBar.text ?? ""
+        self.search()
+    }
+    
 }

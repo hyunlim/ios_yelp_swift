@@ -39,7 +39,7 @@ class FiltersViewController: UIViewController {
         // load available selection
         self.categories = BusinessSearchCriteria.yelpCategories()
         
-        // load search state into UI
+        // load search criteria into UI
         if let searchCriteria = self.delegate?.loadCriteria(self) {
             self.loadCriteriaIntoUI(searchCriteria)
         }

@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="126" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="irE-uP-TDn">
-                                <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="com.lyft.BusinessCell" rowHeight="126" id="gDd-Zb-whW" customClass="BusinessCell" customModule="Yelp" customModuleProvider="target">
@@ -118,14 +118,10 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="VBY-gq-v8E" firstAttribute="top" secondItem="irE-uP-TDn" secondAttribute="bottom" id="6Zm-Pr-Myu"/>
                             <constraint firstAttribute="trailing" secondItem="irE-uP-TDn" secondAttribute="trailing" id="CKF-5j-ptb"/>
-                            <constraint firstItem="irE-uP-TDn" firstAttribute="top" secondItem="hR0-74-jRp" secondAttribute="bottom" id="Qu7-O3-kvQ"/>
-                            <constraint firstItem="VBY-gq-v8E" firstAttribute="top" secondItem="irE-uP-TDn" secondAttribute="bottom" id="SeD-Ah-U4Z"/>
-                            <constraint firstItem="irE-uP-TDn" firstAttribute="top" secondItem="hR0-74-jRp" secondAttribute="bottom" id="b2U-da-axr"/>
                             <constraint firstItem="irE-uP-TDn" firstAttribute="leading" secondItem="XhR-oz-92f" secondAttribute="leading" id="bOu-RY-Tjk"/>
-                            <constraint firstItem="irE-uP-TDn" firstAttribute="leading" secondItem="XhR-oz-92f" secondAttribute="leading" id="fJ9-rg-P25"/>
-                            <constraint firstItem="VBY-gq-v8E" firstAttribute="top" secondItem="irE-uP-TDn" secondAttribute="bottom" id="fpI-ek-itq"/>
-                            <constraint firstAttribute="trailing" secondItem="irE-uP-TDn" secondAttribute="trailing" id="pQK-Ee-xJG"/>
+                            <constraint firstItem="irE-uP-TDn" firstAttribute="top" secondItem="XhR-oz-92f" secondAttribute="top" id="nAf-Qi-Z4J"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Yelp" id="4sJ-aD-ZEm">
@@ -156,7 +152,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="fXm-TX-NhY">
-                                <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="com.lyft.SwitchCell" id="RZc-uo-ACx" customClass="SwitchCell" customModule="Yelp" customModuleProvider="target">
@@ -223,10 +219,10 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="A3f-0q-3lH" firstAttribute="top" secondItem="fXm-TX-NhY" secondAttribute="bottom" id="2nD-sM-Gil"/>
+                            <constraint firstItem="A3f-0q-3lH" firstAttribute="top" secondItem="fXm-TX-NhY" secondAttribute="bottom" id="6bo-MI-Mmp"/>
                             <constraint firstAttribute="trailing" secondItem="fXm-TX-NhY" secondAttribute="trailing" id="Dco-Aw-uhc"/>
-                            <constraint firstItem="fXm-TX-NhY" firstAttribute="top" secondItem="S0q-03-aBp" secondAttribute="bottom" id="MF4-9g-gUn"/>
                             <constraint firstItem="fXm-TX-NhY" firstAttribute="leading" secondItem="sHm-rz-hp9" secondAttribute="leading" id="Mul-aa-h33"/>
+                            <constraint firstItem="fXm-TX-NhY" firstAttribute="top" secondItem="sHm-rz-hp9" secondAttribute="top" id="ewy-2D-N3L"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Filters" id="ucJ-T2-sOz">
