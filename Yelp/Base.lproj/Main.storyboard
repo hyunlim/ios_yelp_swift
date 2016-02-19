@@ -17,7 +17,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="126" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="irE-uP-TDn">
+                            <tableView hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="126" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="irE-uP-TDn">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -115,12 +115,19 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5r0-74-Z7R">
+                                <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                            </mapView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="VBY-gq-v8E" firstAttribute="top" secondItem="irE-uP-TDn" secondAttribute="bottom" id="6Zm-Pr-Myu"/>
+                            <constraint firstItem="5r0-74-Z7R" firstAttribute="top" secondItem="hR0-74-jRp" secondAttribute="bottom" id="AM4-Sf-cB7"/>
                             <constraint firstAttribute="trailing" secondItem="irE-uP-TDn" secondAttribute="trailing" id="CKF-5j-ptb"/>
+                            <constraint firstItem="VBY-gq-v8E" firstAttribute="top" secondItem="5r0-74-Z7R" secondAttribute="bottom" id="Jtz-P0-nAZ"/>
                             <constraint firstItem="irE-uP-TDn" firstAttribute="leading" secondItem="XhR-oz-92f" secondAttribute="leading" id="bOu-RY-Tjk"/>
+                            <constraint firstItem="5r0-74-Z7R" firstAttribute="leading" secondItem="XhR-oz-92f" secondAttribute="leading" id="h4n-lI-2AM"/>
+                            <constraint firstAttribute="trailing" secondItem="5r0-74-Z7R" secondAttribute="trailing" id="k6M-lP-2zw"/>
                             <constraint firstItem="irE-uP-TDn" firstAttribute="top" secondItem="XhR-oz-92f" secondAttribute="top" id="nAf-Qi-Z4J"/>
                         </constraints>
                     </view>
@@ -132,6 +139,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="searchMap" destination="5r0-74-Z7R" id="VC6-NT-7YZ"/>
                         <outlet property="tableView" destination="irE-uP-TDn" id="rDQ-wf-I36"/>
                     </connections>
                 </viewController>

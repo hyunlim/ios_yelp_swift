@@ -7,13 +7,17 @@
 //
 
 import UIKit
+import MapKit
+import CoreLocation
 
 class BusinessesViewController: UIViewController {
 
     var businesses: [Business]!
     var searchCriteria: BusinessSearchCriteria?
+    var locationManager : CLLocationManager!
     
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var searchMap: MKMapView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,7 +36,14 @@ class BusinessesViewController: UIViewController {
         self.tableView.dataSource = self
         self.tableView.rowHeight = UITableViewAutomaticDimension
         self.tableView.estimatedRowHeight = 120
-
+        
+        // setup corelocation
+        self.locationManager = CLLocationManager()
+        self.locationManager.delegate = self
+        self.locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+        self.locationManager.distanceFilter = 200
+        self.locationManager.requestWhenInUseAuthorization()
+        
         self.search()
 
     }
@@ -106,6 +117,41 @@ extension BusinessesViewController: UISearchBarDelegate {
         self.searchCriteria = BusinessSearchCriteria()
         self.searchCriteria?.term = searchBar.text ?? ""
         self.search()
+    }
+    
+}
+
+extension BusinessesViewController: CLLocationManagerDelegate {
+ 
+    func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
+        if status == CLAuthorizationStatus.AuthorizedWhenInUse {
+            self.locationManager.startUpdatingLocation()
+        }
+    }
+    
+    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        if let location = locations.first {
+            self.goToLocation(location)
+        }
+    }
+    
+    func goToLocation(location: CLLocation) {
+        let span = MKCoordinateSpanMake(0.1, 0.1)
+        let region = MKCoordinateRegionMake(location.coordinate, span)
+        self.searchMap.setRegion(region, animated: true)
+    }
+    
+    func getBounds() -> (neCoord: CLLocationCoordinate2D, swCoord: CLLocationCoordinate2D)? {
+        if let mapView = self.searchMap {
+            let mRect = mapView.visibleMapRect
+            let neMapPoint = MKMapPointMake(MKMapRectGetMaxX(mRect), mRect.origin.y)
+            let neCoord = MKCoordinateForMapPoint(neMapPoint)
+            let swMapPoint = MKMapPointMake(mRect.origin.x, MKMapRectGetMaxY(mRect))
+            let swCoord = MKCoordinateForMapPoint(swMapPoint)
+            return (neCoord, swCoord)
+        }
+        
+        return nil
     }
     
 }
