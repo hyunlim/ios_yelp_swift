@@ -19,6 +19,7 @@ class FiltersViewController: UIViewController {
     
     private let sectionHeadings = [
         "Deals",
+        "Sort By",
         "Categories"
     ]
     
@@ -32,6 +33,8 @@ class FiltersViewController: UIViewController {
         
         self.tableView.delegate = self
         self.tableView.dataSource = self
+        self.tableView.rowHeight = UITableViewAutomaticDimension
+        self.tableView.estimatedRowHeight = 120
         
         // load available selection
         self.categories = BusinessSearchCriteria.yelpCategories()
@@ -77,7 +80,11 @@ extension FiltersViewController: UITableViewDataSource {
         switch(section) {
         case 0:
             count = 1
+            break
         case 1:
+            count = 1
+            break
+        case 2:
             count = self.categories.count
             break
         default:
@@ -101,6 +108,14 @@ extension FiltersViewController: UITableViewDataSource {
             cell = switchCell
             break
         case 1:
+            let sortCell = tableView.dequeueReusableCellWithIdentifier("com.lyft.SortCell", forIndexPath: indexPath) as! SortCell
+            
+            sortCell.delegate = self
+            sortCell.sortControl.selectedSegmentIndex = self.searchCriteria?.sort?.rawValue ?? 0
+            
+            cell = sortCell
+            break
+        case 2:
             let switchCell = tableView.dequeueReusableCellWithIdentifier("com.lyft.SwitchCell", forIndexPath: indexPath) as! SwitchCell
             let category = self.categories[indexPath.row]
             
@@ -137,7 +152,7 @@ extension FiltersViewController: SwitchCellDelegate {
                 switch(indexPath.section) {
                 case 0:
                     searchCriteria.deals = value
-                case 1:
+                case 2:
                     if let categoryCode = self.categories[indexPath.row]["code"] {
                         if value {
                             searchCriteria.categories?.insert(categoryCode)
@@ -151,4 +166,12 @@ extension FiltersViewController: SwitchCellDelegate {
                 }
         }
     }
+}
+
+extension FiltersViewController: SortCellDelegate {
+    
+    func sortCell(sortCell: SortCell, didChangeValue value: Int) {
+        self.searchCriteria?.sort = YelpSortMode(rawValue: value)
+    }
+    
 }

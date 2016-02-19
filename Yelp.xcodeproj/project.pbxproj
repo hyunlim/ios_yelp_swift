@@ -19,6 +19,7 @@
 		71DC9F361C767D28001CED02 /* SwitchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71DC9F351C767D28001CED02 /* SwitchCell.swift */; };
 		71DC9F381C767EFE001CED02 /* FiltersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71DC9F371C767EFE001CED02 /* FiltersViewController.swift */; };
 		71DC9F3A1C76B15D001CED02 /* BusinessSearchCriteria.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71DC9F391C76B15D001CED02 /* BusinessSearchCriteria.swift */; };
+		71DC9F3C1C76EB7E001CED02 /* SortCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71DC9F3B1C76EB7E001CED02 /* SortCell.swift */; };
 		90B718C590BD546DEFEF0D61 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA3C5CF4FD317D72ABE2AAC4 /* Pods.framework */; };
 /* End PBXBuildFile section */
 
@@ -49,6 +50,7 @@
 		71DC9F351C767D28001CED02 /* SwitchCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwitchCell.swift; sourceTree = "<group>"; };
 		71DC9F371C767EFE001CED02 /* FiltersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FiltersViewController.swift; sourceTree = "<group>"; };
 		71DC9F391C76B15D001CED02 /* BusinessSearchCriteria.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusinessSearchCriteria.swift; sourceTree = "<group>"; };
+		71DC9F3B1C76EB7E001CED02 /* SortCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SortCell.swift; sourceTree = "<group>"; };
 		97D8B2E3FFD1AF4F4A707E47 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		AA3C5CF4FD317D72ABE2AAC4 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BBD540129B10DFE60E8C24E2 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
@@ -173,6 +175,7 @@
 			children = (
 				71DC9F331C765286001CED02 /* BusinessCell.swift */,
 				71DC9F351C767D28001CED02 /* SwitchCell.swift */,
+				71DC9F3B1C76EB7E001CED02 /* SortCell.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -343,6 +346,7 @@
 				71DC9F341C765286001CED02 /* BusinessCell.swift in Sources */,
 				22AAAA9C1AEA1EC300A544AF /* BusinessesViewController.swift in Sources */,
 				71DC9F381C767EFE001CED02 /* FiltersViewController.swift in Sources */,
+				71DC9F3C1C76EB7E001CED02 /* SortCell.swift in Sources */,
 				22AAAA991AEA0A9700A544AF /* Business.swift in Sources */,
 				222D8A7D19CCFAE000D2DB53 /* YelpClient.swift in Sources */,
 				222D8A5B19CCF9F900D2DB53 /* AppDelegate.swift in Sources */,

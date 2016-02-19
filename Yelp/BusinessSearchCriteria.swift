@@ -19,6 +19,12 @@ public class BusinessSearchCriteria {
         self.term = ""
     }
     
+    public static func yelpSorts() -> [[String:String]] {
+        return [["name" : "Best Match", "code": "afghani"],
+            ["name" : "Distance", "code": "african"],
+            ["name" : "Highest Rated", "code": "yugoslav"]]
+    }
+    
     public static func yelpCategories() -> [[String:String]] {
         return [["name" : "Afghan", "code": "afghani"],
             ["name" : "African", "code": "african"],

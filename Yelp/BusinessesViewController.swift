@@ -97,9 +97,10 @@ extension BusinessesViewController: FiltersViewControllerDelegate {
     func filtersViewController(filtersViewController: FiltersViewController, didUpdateFilters searchCriteria: BusinessSearchCriteria) {
         let categories = Array(searchCriteria.categories!)
         let deals = searchCriteria.deals ?? false
+        let sort = searchCriteria.sort
         Business.searchWithTerm(
             searchCriteria.term,
-            sort: nil,
+            sort: sort,
             categories: categories,
             deals: deals,
             completion: {(businesses: [Business]!, error: NSError!) -> Void in
