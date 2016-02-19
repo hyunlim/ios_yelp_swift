@@ -11,7 +11,7 @@ import UIKit
 class BusinessesViewController: UIViewController {
 
     var businesses: [Business]!
-    weak var searchCriteria: BusinessSearchCriteria?
+    var searchCriteria: BusinessSearchCriteria?
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -26,7 +26,7 @@ class BusinessesViewController: UIViewController {
         self.tableView.rowHeight = UITableViewAutomaticDimension
         self.tableView.estimatedRowHeight = 120
 
-        Business.searchWithTerm("Thai", completion: { (businesses: [Business]!, error: NSError!) -> Void in
+        Business.searchWithTerm(self.searchCriteria!.term, completion: { (businesses: [Business]!, error: NSError!) -> Void in
             self.businesses = businesses
         
             for business in businesses {
@@ -95,10 +95,11 @@ extension BusinessesViewController: UITableViewDataSource {
 
 extension BusinessesViewController: FiltersViewControllerDelegate {
     func filtersViewController(filtersViewController: FiltersViewController, didUpdateFilters searchCriteria: BusinessSearchCriteria) {
+        let categories = Array(searchCriteria.categories!)
         Business.searchWithTerm(
             searchCriteria.term,
             sort: nil,
-            categories: searchCriteria.categories,
+            categories: categories,
             deals: nil,
             completion: {(businesses: [Business]!, error: NSError!) -> Void in
                 self.businesses = businesses

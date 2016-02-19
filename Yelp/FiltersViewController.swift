@@ -22,7 +22,6 @@ class FiltersViewController: UIViewController {
     ]
     
     private var categories:[[String:String]]!
-    private var switchState:[Int:Bool]! = [:]
     
     internal var delegate:FiltersViewControllerDelegate?
     private weak var searchCriteria:BusinessSearchCriteria?
@@ -74,17 +73,6 @@ class FiltersViewController: UIViewController {
     */
     private func constructCriteriaFromUI() -> BusinessSearchCriteria {
         let searchCriteria = self.searchCriteria ?? BusinessSearchCriteria()
-        
-        // parse categories
-        var selectedCatagories = [String]()
-        for (row,isSelected) in self.switchState {
-            if isSelected {
-                selectedCatagories.append(self.categories[row]["code"]!)
-            }
-        }
-        if selectedCatagories.count > 0 {
-            searchCriteria.categories = selectedCatagories
-        }
     
         return searchCriteria
     }
@@ -114,7 +102,7 @@ extension FiltersViewController: UITableViewDataSource {
             
             switchCell.switchLabel.text = category["name"]
             switchCell.delegate = self
-            switchCell.toggleSwitch.on = self.switchState[indexPath.row] ?? false
+            switchCell.toggleSwitch.on = self.searchCriteria?.categories?.contains(category["code"]!) ?? false
             
             cell = switchCell
         } else {
@@ -137,9 +125,15 @@ extension FiltersViewController: UITableViewDelegate {
 
 extension FiltersViewController: SwitchCellDelegate {
     func switchCell(switchCell: SwitchCell, didChangeValue value: Bool) {
-        if let indexPath = self.tableView.indexPathForCell(switchCell) {
-        
-            self.switchState[indexPath.row] = value
+        if let indexPath = self.tableView.indexPathForCell(switchCell),
+            searchCriteria = self.searchCriteria {
+            
+                if value {
+                    searchCriteria.categories?.insert(self.categories[indexPath.row]["code"]!)
+                } else {
+                    searchCriteria.categories?.remove(self.categories[indexPath.row]["code"]!)
+                }
+            
         }
     }
 }

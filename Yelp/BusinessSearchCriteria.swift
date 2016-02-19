@@ -12,7 +12,7 @@ public class BusinessSearchCriteria {
     
     public var term: String
     internal var sort: YelpSortMode?
-    public var categories: [String]?
+    public var categories: Set<String>? = []
     public var deals: Bool?
     
     init() {
