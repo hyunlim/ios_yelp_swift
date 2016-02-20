@@ -76,6 +76,14 @@ class BusinessesViewController: UIViewController {
     }
     
     private func search() {
+        let useBounds = !self.searchMap.hidden
+        if useBounds {
+            if let (ne, sw) = self.getBounds() {
+                self.searchCriteria?.setBounds(ne, sw: sw)
+            }
+        } else {
+            self.searchCriteria?.bounds = nil
+        }
         if let searchCriteria = self.searchCriteria {
             let categories = Array(searchCriteria.categories!)
             let deals = searchCriteria.deals ?? false

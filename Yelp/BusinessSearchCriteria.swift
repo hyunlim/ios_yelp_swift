@@ -24,13 +24,15 @@ public class BusinessSearchCriteria {
     }
     
     public func setBounds(ne: CLLocationCoordinate2D, sw: CLLocationCoordinate2D) -> Void {
-        if var bounds = self.bounds {
-            bounds["ne_latitude"] = Double(_bits: ne.latitude.value)
-            bounds["ne_longitude"] = Double(_bits: ne.longitude.value)
-            bounds["sw_latitude"] = Double(_bits: sw.latitude.value)
-            bounds["sw_longitude"] = Double(_bits: sw.longitude.value)
-            self.bounds = bounds
-        }
+        var bounds = [String:Double]()
+
+        bounds["ne_latitude"] = Double(_bits: ne.latitude.value)
+        bounds["ne_longitude"] = Double(_bits: ne.longitude.value)
+        bounds["sw_latitude"] = Double(_bits: sw.latitude.value)
+        bounds["sw_longitude"] = Double(_bits: sw.longitude.value)
+        
+        self.bounds = bounds
+        
     }
     
     public static func yelpCategories() -> [[String:String]] {
