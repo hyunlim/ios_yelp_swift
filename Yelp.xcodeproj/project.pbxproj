@@ -16,6 +16,8 @@
 		22AAAA991AEA0A9700A544AF /* Business.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AAAA981AEA0A9700A544AF /* Business.swift */; };
 		22AAAA9C1AEA1EC300A544AF /* BusinessesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AAAA9B1AEA1EC300A544AF /* BusinessesViewController.swift */; };
 		711386901C76FA64000DBEB7 /* SliderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7113868F1C76FA64000DBEB7 /* SliderCell.swift */; };
+		711B9FEB1C78070000125D76 /* BusinessAnnotationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 711B9FEA1C78070000125D76 /* BusinessAnnotationView.xib */; };
+		711B9FED1C78072700125D76 /* BusinessAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 711B9FEC1C78072700125D76 /* BusinessAnnotationView.swift */; };
 		71DC9F341C765286001CED02 /* BusinessCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71DC9F331C765286001CED02 /* BusinessCell.swift */; };
 		71DC9F361C767D28001CED02 /* SwitchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71DC9F351C767D28001CED02 /* SwitchCell.swift */; };
 		71DC9F381C767EFE001CED02 /* FiltersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71DC9F371C767EFE001CED02 /* FiltersViewController.swift */; };
@@ -48,6 +50,8 @@
 		22AAAA981AEA0A9700A544AF /* Business.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Business.swift; sourceTree = "<group>"; };
 		22AAAA9B1AEA1EC300A544AF /* BusinessesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusinessesViewController.swift; sourceTree = "<group>"; };
 		7113868F1C76FA64000DBEB7 /* SliderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SliderCell.swift; sourceTree = "<group>"; };
+		711B9FEA1C78070000125D76 /* BusinessAnnotationView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BusinessAnnotationView.xib; sourceTree = "<group>"; };
+		711B9FEC1C78072700125D76 /* BusinessAnnotationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusinessAnnotationView.swift; sourceTree = "<group>"; };
 		71DC9F331C765286001CED02 /* BusinessCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusinessCell.swift; sourceTree = "<group>"; };
 		71DC9F351C767D28001CED02 /* SwitchCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwitchCell.swift; sourceTree = "<group>"; };
 		71DC9F371C767EFE001CED02 /* FiltersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FiltersViewController.swift; sourceTree = "<group>"; };
@@ -109,6 +113,7 @@
 				222D8A6119CCF9F900D2DB53 /* Images.xcassets */,
 				222D8A6319CCF9F900D2DB53 /* LaunchScreen.xib */,
 				222D8A5819CCF9F900D2DB53 /* Supporting Files */,
+				711B9FEA1C78070000125D76 /* BusinessAnnotationView.xib */,
 			);
 			path = Yelp;
 			sourceTree = "<group>";
@@ -179,6 +184,7 @@
 				71DC9F351C767D28001CED02 /* SwitchCell.swift */,
 				71DC9F3B1C76EB7E001CED02 /* SortCell.swift */,
 				7113868F1C76FA64000DBEB7 /* SliderCell.swift */,
+				711B9FEC1C78072700125D76 /* BusinessAnnotationView.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -278,6 +284,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				222D8A6019CCF9F900D2DB53 /* Main.storyboard in Resources */,
+				711B9FEB1C78070000125D76 /* BusinessAnnotationView.xib in Resources */,
 				222D8A6519CCF9F900D2DB53 /* LaunchScreen.xib in Resources */,
 				222D8A6219CCF9F900D2DB53 /* Images.xcassets in Resources */,
 			);
@@ -353,6 +360,7 @@
 				22AAAA991AEA0A9700A544AF /* Business.swift in Sources */,
 				711386901C76FA64000DBEB7 /* SliderCell.swift in Sources */,
 				222D8A7D19CCFAE000D2DB53 /* YelpClient.swift in Sources */,
+				711B9FED1C78072700125D76 /* BusinessAnnotationView.swift in Sources */,
 				222D8A5B19CCF9F900D2DB53 /* AppDelegate.swift in Sources */,
 				71DC9F361C767D28001CED02 /* SwitchCell.swift in Sources */,
 			);

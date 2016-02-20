@@ -183,6 +183,25 @@ extension BusinessesViewController: MKMapViewDelegate {
         }
     }
     
+    /* commented out to work on it bit more later after due date.  Uncommenting it will make it work with bad looking markers
+    func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
+        let identifier = "BusinessAnnotationView"
+        
+        // custom image annotation
+        var annotationView = mapView.dequeueReusableAnnotationViewWithIdentifier(identifier) as? BusinessAnnotationView
+        if (annotationView == nil) {
+            annotationView = BusinessAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+        }
+        else {
+            annotationView!.annotation = annotation
+        }
+        
+        annotationView?.nameLabel.text = annotation.title ?? "No"
+        
+        return annotationView
+    }
+*/
+    
     private func getBounds() -> (ne: CLLocationCoordinate2D, sw: CLLocationCoordinate2D)? {
         if let mapView = self.searchMap {
             let mRect = mapView.visibleMapRect
