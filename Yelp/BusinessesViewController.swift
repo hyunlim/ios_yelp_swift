@@ -12,7 +12,7 @@ import CoreLocation
 
 class BusinessesViewController: UIViewController {
 
-    var businesses: [Business]!
+    var businesses: [Business]?
     var searchCriteria: BusinessSearchCriteria?
     var locationManager : CLLocationManager!
     var annotations: [MKAnnotation]?
@@ -117,7 +117,9 @@ extension BusinessesViewController: UITableViewDataSource {
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = self.tableView.dequeueReusableCellWithIdentifier("com.lyft.BusinessCell", forIndexPath: indexPath) as! BusinessCell
         
-        cell.business = self.businesses[indexPath.row]
+        if let businesses = self.businesses {
+            cell.business = businesses[indexPath.row]
+        }
         
         return cell
     }
@@ -220,13 +222,15 @@ extension BusinessesViewController: MKMapViewDelegate {
             self.searchMap.removeAnnotations(annotations)
         }
         self.annotations = []
-        for business in self.businesses {
-            if let location = business.location {
-                let annotation = MKPointAnnotation()
-                annotation.coordinate = location.coordinate
-                annotation.title = business.name
-                self.searchMap.addAnnotation(annotation)
-                self.annotations?.append(annotation)
+        if let businesses = self.businesses {
+            for business in businesses {
+                if let location = business.location {
+                    let annotation = MKPointAnnotation()
+                    annotation.coordinate = location.coordinate
+                    annotation.title = business.name
+                    self.searchMap.addAnnotation(annotation)
+                    self.annotations?.append(annotation)
+                }
             }
         }
     }
