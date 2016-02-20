@@ -2,7 +2,7 @@
 
 Yelp Client is a Yelp search app using the [Yelp API](http://www.yelp.com/developers/documentation/v2/search_api).
 
-Time spent: 14 hours spent in total, 4 beers consumed, 7 Mt. Dews downed
+Time spent: 16 hours spent in total, 4 beers consumed, 7 Mt. Dews downed
 
 ## User Stories
 
@@ -32,7 +32,7 @@ The following **optional** features are implemented:
 
 The following **additional** features are implemented:
 
-- [ ] List anything else that you can get done to improve the app functionality!
+- [x] Filters persist until a search bar search is started
 
 Please list two areas of the assignment you'd like to **discuss further with your peers** during the next class (examples include better ways to implement something, how to extend your app in certain ways, etc):
 
@@ -43,13 +43,12 @@ Please list two areas of the assignment you'd like to **discuss further with you
 
 Here's a walkthrough of implemented user stories:
 
-<img src='http://i.imgur.com/link/to/your/gif/file.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+![Yelp Demo](yelpDemo.gif)
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
 ## Notes
-
-Describe any challenges encountered while building the app.
+Doing custom popover on the markers is a bear.  I got the custom marker to show up, but I realized then that I needed to create a new popover as well, when the original goal was just creating a custom popover.
 
 ## License
 No License.  Do whatever you want.
