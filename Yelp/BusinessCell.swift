@@ -22,7 +22,9 @@ class BusinessCell: UITableViewCell {
         didSet {
             if let business = self.business {
                 self.nameLabel.text = business.name
-                self.thumbImageView.setImageWithURL(business.imageURL!)
+                if let imageUrl = business.imageURL {
+                    self.thumbImageView.setImageWithURL(imageUrl)
+                }
                 self.ratingImageView.setImageWithURL(business.ratingImageURL!)
                 if let reviewCount = business.reviewCount {
                     self.reviewsCountLabel.text = "\(reviewCount) Reviews"

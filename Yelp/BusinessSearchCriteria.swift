@@ -29,6 +29,7 @@ public class BusinessSearchCriteria {
             bounds["ne_longitude"] = Double(_bits: ne.longitude.value)
             bounds["sw_latitude"] = Double(_bits: sw.latitude.value)
             bounds["sw_longitude"] = Double(_bits: sw.longitude.value)
+            self.bounds = bounds
         }
     }
     

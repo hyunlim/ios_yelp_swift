@@ -15,6 +15,7 @@ class BusinessesViewController: UIViewController {
     var businesses: [Business]!
     var searchCriteria: BusinessSearchCriteria?
     var locationManager : CLLocationManager!
+    var annotations: [MKAnnotation]?
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchMap: MKMapView!
@@ -27,6 +28,7 @@ class BusinessesViewController: UIViewController {
         searchBar.delegate = self
         searchBar.sizeToFit()
         searchBar.placeholder = "Restaurants"
+        searchBar.enablesReturnKeyAutomatically = false
         self.navigationItem.titleView = searchBar
         
         self.searchCriteria = BusinessSearchCriteria()
@@ -70,6 +72,7 @@ class BusinessesViewController: UIViewController {
             self.tableView.hidden = true
             self.searchMap.hidden = false
         }
+        self.search()
     }
     
     private func search() {
@@ -88,7 +91,11 @@ class BusinessesViewController: UIViewController {
                 bounds: bounds,
                 completion: {(businesses: [Business]!, error: NSError!) -> Void in
                     self.businesses = businesses
-                    self.tableView.reloadData()
+                    if self.tableView.hidden {
+                        self.drawMarkers()
+                    } else {
+                        self.tableView.reloadData()
+                    }
             })
         }
     }
@@ -179,6 +186,22 @@ extension BusinessesViewController: MKMapViewDelegate {
         }
         
         return nil
+    }
+    
+    private func drawMarkers() {
+        if let annotations = self.annotations {
+            self.searchMap.removeAnnotations(annotations)
+        }
+        self.annotations = []
+        for business in self.businesses {
+            if let location = business.location {
+                let annotation = MKPointAnnotation()
+                annotation.coordinate = location.coordinate
+                annotation.title = business.name
+                self.searchMap.addAnnotation(annotation)
+                self.annotations?.append(annotation)
+            }
+        }
     }
     
 }

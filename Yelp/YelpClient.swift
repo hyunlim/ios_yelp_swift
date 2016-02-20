@@ -88,7 +88,7 @@ class YelpClient: BDBOAuth1RequestOperationManager {
             let ne_lng_str = String(format: "%.6f", ne_lng)
             let sw_lat_str = String(format: "%.6f", sw_lat)
             let sw_lng_str = String(format: "%.6f", sw_lng)
-            parameters["bounds"] = "\(sw_lat_str),\(sw_lng_str)\(ne_lat_str),\(ne_lng_str)"
+            parameters["bounds"] = "\(sw_lat_str),\(sw_lng_str)|\(ne_lat_str),\(ne_lng_str)"
         } else {
             parameters["ll"] = "37.785771,-122.406165"
         }
