@@ -17,6 +17,7 @@ public class BusinessSearchCriteria {
     public var deals: Bool?
     public var radius:Int?
     public var bounds:[String:Double]? = [:]
+    public weak var location: CLLocation?
     
     init() {
         self.term = ""
